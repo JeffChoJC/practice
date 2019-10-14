@@ -7,3 +7,5 @@
 # saturday failed and now its sunday
 # i definitely need to do something about maru because its affecting my mental and productivity
 # lets see if i can get in some practice after i lift
+
+# here we go, its monday and ill definitely get in my practice today
