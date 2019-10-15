@@ -3,15 +3,29 @@ class LeaderBoard {
         this.board = {};
     }
 
-    addScore(playerId, score) {
-        if (!this.board[playerId]) {
-            this.board[playerId].push(score);
+    addScore(playerId, score) {  
+        if (this.board[playerId]) {
+            this.board[playerId].scores.push(score);
         } else {
-            this.board[playerId] = [score];
+            this.board[playerId] = new Player(playerId, score);
         }
 
-        return this.board[playerId].reduce((sum, num) => {
+        const scores = this.board[playerId].scores;
+        return this.board[playerId].average = scores.reduce((sum, num) => {
             return sum + num
-        }) / ;
+        }) / scores.length;
     }
 }
+
+class Player {
+    constructor(id, score) {
+        this.id = id;
+        this.scores = [score];
+        this.average = score;
+    }
+}
+
+test = new LeaderBoard();
+test.addScore(1, 80);
+test.addScore(1, 60);
+console.log(test.board);
