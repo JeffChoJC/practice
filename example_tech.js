@@ -15,6 +15,10 @@ class LeaderBoard {
             return sum + num
         }) / scores.length;
     }
+
+    top(num) {
+        
+    }
 }
 
 class Player {
@@ -26,6 +30,6 @@ class Player {
 }
 
 test = new LeaderBoard();
-test.addScore(1, 80);
-test.addScore(1, 60);
+console.log(test.addScore(1, 80));
+console.log(test.addScore(1, 60));
 console.log(test.board);
