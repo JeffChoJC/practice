@@ -17,7 +17,11 @@ class LeaderBoard {
     }
 
     top(num) {
-        
+        let averages = [];
+        for (var key in this.board) {
+            averages.push([key, this.board[key].average]);
+            console.log(averages);
+        }
     }
 }
 
@@ -30,6 +34,7 @@ class Player {
 }
 
 test = new LeaderBoard();
-console.log(test.addScore(1, 80));
-console.log(test.addScore(1, 60));
-console.log(test.board);
+test.addScore(1, 80);
+test.addScore(1, 60);
+// console.log(test.board);
+console.log(test.top(2));
