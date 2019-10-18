@@ -10,3 +10,5 @@
 
 # here we go, its monday and ill definitely get in my practice today
 # practice failed cause grace came. can't focus...
+
+# sup won
