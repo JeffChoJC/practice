@@ -37,4 +37,4 @@ test = new LeaderBoard();
 test.addScore(1, 80);
 test.addScore(1, 60);
 // console.log(test.board);
-console.log(test.top(2));
+console.log(test.top(3));
