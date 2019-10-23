@@ -13,30 +13,44 @@ class LeaderBoard {
         return this.board[playerId].average();
     }
 
-    top(num) {
+    sortAndTake(order, num) {
         let players = [];
+
         for (var key in this.board) {
             players.push(this.board[key])
         }
 
         let sorted = false;
+
         while (!sorted) {
             sorted = true;
             for (var i = 0; i < players.length - 1; i++) {
-                if (players[i].average() < players[i + 1].average()) {
+                
+                const condition = (order.toUpperCase() === "TOP") ? 
+                    (players[i].average() < players[i + 1].average()) : (players[i].average() > players[i + 1].average())
+                
+                if (condition) {
                     [players[i], players[i + 1]] = [players[i + 1], players[i]];
                     sorted = false;
                 }
             }
         }
 
-        let top = [];
-        for (var j = 0; j < num; j++) {
-            top.push(players[j].id);
-        }        
-
-        return top;
+        players = players.map(player => { return player.id });
+        return players.slice(0, num);
     }
+
+    // top(num) {
+    //     const players = this.sort("DESC");
+
+    //     return players.slice(0, num);
+    // }
+
+    // bottom(num) {
+    //     const players = this.sort("ASC");
+
+    //     return players.slice(0, num);
+    // }
 
     reset(playerId) {
         if (this.board[playerId]) {
@@ -77,10 +91,10 @@ test.addScore(4, 90);
 test.addScore(4, 45);
 test.addScore(5, 50);
 test.addScore(6, 100);
-console.log(test.board);
-test.reset(6);
-test.reset(-1000);
-console.log("-------------");
-console.log(test.board);
 // console.log(test.board);
-// console.log(test.top(5));
+// test.reset(6);
+// test.reset(-1000);
+// console.log("-------------");
+// console.log(test.board);
+console.log(test.sortAndTake("TOP", 3));
+console.log(test.sortAndTake("BOTTOM", 3));
