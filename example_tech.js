@@ -39,7 +39,9 @@ class LeaderBoard {
     }
 
     reset(playerId) {
-        this.board[playerId].reset();
+        if (this.board[playerId]) {
+            this.board[playerId].reset();
+        }
     }
 }
 
@@ -77,6 +79,7 @@ test.addScore(5, 50);
 test.addScore(6, 100);
 console.log(test.board);
 test.reset(6);
+test.reset(-1000);
 console.log("-------------");
 console.log(test.board);
 // console.log(test.board);
