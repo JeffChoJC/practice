@@ -80,6 +80,16 @@ class Player {
     }
 }
 
+class Score {
+    constructor(val) {
+        this.val = val;
+        this.createdAt = new Date();
+        this.valid = true;
+    }
+
+    expire
+}
+
 test = new LeaderBoard();
 test.addScore(1, 80);
 test.addScore(1, 60);
