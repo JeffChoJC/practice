@@ -30,5 +30,5 @@ function bubblesort(nums) {
 }
 
 var nums1 = [12, 31, 51, 2, 86, 142, 754, 22, 61, 23, 9, 0, 11];
-// console.log(quicksort(nums1));
+console.log(quicksort(nums1));
 console.log(bubblesort(nums1));
