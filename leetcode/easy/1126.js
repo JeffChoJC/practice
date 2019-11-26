@@ -1,4 +1,4 @@
-// Easy(10): 104, 136, 169, 206, 237    344, 412, , 283, 242, 217
+// Easy(10): 104, 136, 169, 206, 217, 237, 242, 283      344, 412, , ,
 
 
 // Medium(5): 94, 46, 22, 347, 238
@@ -59,8 +59,46 @@ const reverseList1 = function (head, prev = null) { //recursive
     return reverseList(next, head)
 };
 
+// 217
+const containsDuplicate = function (nums) {
+    let count = {}
+    for (num of nums) {
+        if (num in count) {
+            return true
+        } else {
+            count[num] = 0
+        }
+    }
+
+    return false
+};
+
 // 237
 const deleteNode = function (node) { //only given access to the node to be deleted
     node.val = node.next.val
     node.next = node.next.next
 };
+
+// 242
+var isAnagram = function (s, t) {
+    let crosscheck = {}
+    for (char of s) {
+        char in crosscheck ? crosscheck[char]++ : crosscheck[char] = 1
+    }
+
+    for (char of t) {
+        if (char in crosscheck) {
+            crosscheck[char]--
+        } else {
+            return false
+        }
+    }
+
+    for (char in crosscheck) {
+        if (crosscheck[char] > 0) return false
+    }
+
+    return true
+};
+
+// 283
