@@ -1,4 +1,4 @@
-// Easy(10): 104, 136, 169, 206     344, 412, 237, 283, 242, 217
+// Easy(10): 104, 136, 169, 206, 237    344, 412, , 283, 242, 217
 
 
 // Medium(5): 94, 46, 22, 347, 238
@@ -57,4 +57,10 @@ const reverseList1 = function (head, prev = null) { //recursive
     const next = head.next
     head.next = prev
     return reverseList(next, head)
+};
+
+// 237
+const deleteNode = function (node) { //only given access to the node to be deleted
+    node.val = node.next.val
+    node.next = node.next.next
 };
