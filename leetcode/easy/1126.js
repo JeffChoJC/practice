@@ -11,7 +11,7 @@ const maxDepth = function (root, depth = 0) {
     return Math.max(maxDepth(root.left, depth + 1), maxDepth(root.right, depth + 1))
 };
 
-const maxDepth = function (root) {
+const maxDepth1 = function (root) {
     return root === null ? 0 : 1 + Math.max(maxDepth(root.left), maxDepth(root.right))
 }
 
@@ -38,3 +38,23 @@ const majorityElement = function (nums) {
 };
 
 // 206
+const reverseList = function (head) { //iterative
+    let prev = null
+    while (head) {
+        const next = head.next //save reference to next node
+        head.next = prev //set current node's next node to previous node
+        prev = head //assign current node as previous previous node
+        head = next //assign next node as current node
+    }
+
+    return prev
+};
+
+const reverseList1 = function (head, prev = null) { //recursive
+    console.log(head)
+    if (head === null) return prev
+
+    const next = head.next
+    head.next = prev
+    return reverseList(next, head)
+};
