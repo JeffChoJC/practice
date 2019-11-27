@@ -1,9 +1,6 @@
 // Easy(10): 104, 136, 169, 206, 217, 237, 242, 283, 344, 412
 
 
-// Medium(5): 94, 46, 22, 347, 238
-// Hard(1): 42(edited) 
-
 // 104
 const maxDepth = function (root, depth = 0) {
     if (root === null) return 
@@ -161,3 +158,18 @@ const reverseString1 = function (s) { //optimized
 }
 
 // 412
+const precalculated = [null, null, "Fizz", null, "Buzz", "Fizz", null, null, "Fizz", "Buzz", null, "Fizz", null, null, "FizzBuzz"]
+
+const fizzBuzz = function (n) {
+    let result = []
+
+    for (let i = 1; i <= n; i++) {
+        if (precalculated[(i - 1) % 15]) {
+            result.push(precalculated[(i - 1) % 15])
+        } else {
+            result.push(String(i))
+        }
+    }
+
+    return result
+};
