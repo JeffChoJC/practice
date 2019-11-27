@@ -1,4 +1,4 @@
-// Easy(10): 104, 136, 169, 206, 217, 237, 242, 283      344, 412, , ,
+// Easy(10): 104, 136, 169, 206, 217, 237, 242, 283, 344, 412
 
 
 // Medium(5): 94, 46, 22, 347, 238
@@ -102,3 +102,62 @@ var isAnagram = function (s, t) {
 };
 
 // 283
+const moveZeroes = function (nums) { //brute force
+    let sorted = false
+
+    while (!sorted) {
+        sorted = true
+        for (let i = 0; i < nums.length - 1; i++) {
+            if (nums[i] === 0 && nums[i + 1] !== 0) {
+                sorted = false
+                [nums[i], nums[i + 1]] = [nums[i + 1], nums[i]]
+            }
+        }
+    }
+
+    return nums
+};
+
+const moveZeroes = function (nums) {
+    let i = 0
+    let j = 1
+
+    while (j < nums.length) {
+        if (nums[i] === 0 && nums[j] !== 0) {
+            [nums[i], nums[j]] = [nums[j], nums[i]]
+            i++
+        } else if (nums[i] !== 0) {
+            i++
+        }
+
+        j++
+    }
+
+    return nums
+}
+
+// 344
+const reverseString = function (s) { //brute force
+    let i = 0
+    let j = s.length - 1
+
+    while (i < j) {
+        [s[i], s[j]] = [s[j], s[i]]
+        i++
+        j--
+    }
+
+    return s
+};
+
+const reverseString1 = function (s) { //optimized
+    let i = 0
+    while (i < s.length / 2) {
+        [s[i], s[s.length - i - 1]] = [s[s.length - i - 1], s[i]]
+        i++
+    }
+
+    return s
+}
+
+// 412
