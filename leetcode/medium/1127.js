@@ -53,9 +53,22 @@ const permute2 = function (nums, n = 0) {
     return res;
 };
 
-
-
 // 94
+const inorderTraversal = function (root) { //recursive
+    const res = []
+
+    const traverse = (node) => {
+        if (node === null) return
+
+
+        traverse(node.left)
+        res.push(node.val)
+        traverse(node.right)
+    }
+
+    traverse(root)
+    return res
+};
 
 // 347
 
