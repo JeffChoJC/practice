@@ -1,4 +1,4 @@
-// Medium(5): 22, 46   94, 347, 238
+// Medium(5): 22, 46   94, 238, 347
 // Hard(1): 42(edited) 
 
 // 22
@@ -53,7 +53,7 @@ const permute2 = function (nums, n = 0) {
     return res;
 };
 
-// 94
+// 94  *This solution depends on which way (left or right) you want to travel first.
 const inorderTraversal = function (root) { //recursive
     const res = []
 
@@ -70,6 +70,44 @@ const inorderTraversal = function (root) { //recursive
     return res
 };
 
-// 347
+const inorderTraversal = function (root) { //iterative
+    const res = [] //
+    const stack = [] //1, null
+
+    while (root || stack.length !== 0) {
+        if (root) {
+            stack.push(root)
+            root = root.left
+        } else {
+            root = stack.pop()
+            res.push(root.val)
+            root = root.right
+        }
+    }
+
+    return res
+};
 
 // 238
+const productExceptSelf = function (nums) {
+    const left = [1]
+    const right = new Array(nums.length)
+    right[right.length - 1] = 1
+    const res = []
+
+    for (let i = 1; i < nums.length; i++) {
+        left[i] = left[i - 1] * nums[i - 1]
+    }
+
+    for (let j = nums.length - 2; j >= 0; j--) {
+        right[j] = right[j + 1] * nums[j + 1]
+    }
+
+    for (let k = 0; k < nums.length; k++) {
+        res[k] = left[k] * right[k]
+    }
+
+    return res
+};
+
+// 347
