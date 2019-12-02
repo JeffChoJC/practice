@@ -1,4 +1,4 @@
-// Medium(5): 22, 46   94, 238, 347
+// Medium(5): 22, 46, 94, 238, 347
 // Hard(1): 42(edited) 
 
 // 22
@@ -45,16 +45,34 @@ const permute2 = function (nums, n = 0) {
     for (let prev of prevs) {  // iteration through current results
         for (let i = 0; i <= prev.length; i++) {  // iteration through values  
             let p = prev.slice(0);
-            p.splice(i, 0, nums[n]);  // successively insert element n
+            p.splice(i, 0, nums[n]);  // successively insert nth element
             res.push(p);
         }
     }
-    console.log(res)
     return res;
 };
 
-// 94  *This solution depends on which way (left or right) you want to travel first.
-const inorderTraversal = function (root) { //recursive
+const permute3 = function (nums) {
+    if (nums.length <= 1) return [nums]
+
+    const el = nums.pop()
+    const permutations = permute3(nums)
+
+    const res = []
+    for (perm of permutations) {
+        for (let i = 0; i <= perm.length; i++) {
+            let p = perm.slice(0, i).concat([el]).concat(perm.slice(i))
+            console.log(p)
+            res.push(p)
+        }
+    }
+
+    return res
+}
+console.log(permute3([1,2,3]))
+
+// 94  ** This solution depends on which way (left or right) you want to travel first.
+const inorderTraversal1 = function (root) { //recursive
     const res = []
 
     const traverse = (node) => {
@@ -70,7 +88,7 @@ const inorderTraversal = function (root) { //recursive
     return res
 };
 
-const inorderTraversal = function (root) { //iterative
+const inorderTraversal2 = function (root) { //iterative
     const res = [] //
     const stack = [] //1, null
 
