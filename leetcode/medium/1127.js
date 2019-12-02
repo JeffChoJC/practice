@@ -111,3 +111,32 @@ const productExceptSelf = function (nums) {
 };
 
 // 347
+const topKFrequent = function (nums, k) { //brute force
+    const count = {}
+    const res = []
+
+    for (num of nums) {
+        if (num in count) {
+            count[num]++
+        } else {
+            count[num] = 1
+        }
+    }
+
+    while (res.length !== k) {
+        let max = 0
+        let maxVal = 0
+
+        for (num in count) {
+            if (count[num] > max) {
+                max = count[num]
+                maxVal = num
+            }
+        }
+
+        res.push(maxVal)
+        count[maxVal] = 0
+    }
+
+    return res
+};
