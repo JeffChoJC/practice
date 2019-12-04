@@ -21,7 +21,7 @@
 // console.log(stepper([3, 4, 1, 0, 10]));           // => true, because we can step through elements 3 -> 4 -> 10
 // console.log(stepper([2, 3, 1, 1, 0, 4, 7, 8]))   // => false, there is no way to step to the end
 
-function stepper(nums) {
+function stepper(nums) { //tabulation
     let table = new Array(nums.length).fill(false)
     table[0] = true
 
@@ -35,6 +35,23 @@ function stepper(nums) {
 
     return table[table.length - 1]
 }
+
+// function stepper(nums, memo = {}) { //memoization
+//     const key = nums.length
+//     if (key in memo) return memo[key]
+//     if (nums.length === 0) return true
+
+//     const n = nums[0]
+//     for (let i = 1; i <= n; i++) {
+//         if (stepper(nums.slice(i), memo)) {
+//             memo[key] = true
+//             return true
+//         }
+//     }
+
+//     memo[key] = false
+//     return false
+// }
 
 // Write a function, maxNonAdjacentSum(nums), that takes in an array of nonnegative numbers.
 // The function should return the maximum sum of elements in the array we can get if we cannot take
