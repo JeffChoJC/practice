@@ -44,13 +44,11 @@ function stepper(nums) { //tabulation
 //     const n = nums[0]
 //     for (let i = 1; i <= n; i++) {
 //         if (stepper(nums.slice(i), memo)) {
-//             memo[key] = true
-//             return true
+//             return memo[key] = true
 //         }
 //     }
 
-//     memo[key] = false
-//     return false
+//     return memo[key] = false
 // }
 
 // Write a function, maxNonAdjacentSum(nums), that takes in an array of nonnegative numbers.
@@ -64,32 +62,32 @@ function stepper(nums) { //tabulation
 // maxNonAdjacentSum([2, 7, 9, 3, 4])   // => 15, because 2 + 9 + 4
 // maxNonAdjacentSum([4,2,1,6])         // => 10, because 4 + 6 
 
-// function maxNonAdjacentSum(nums) {
-//     if (nums.length === 0) return 0
-
-//     const table = new Array(nums.length).fill(0)
-//     table[0] = nums[0]
-
-//     for (let i = 1; i < table.length; i++) {
-//         const skip = table[i - 2] === undefined ? 0 : table[i -2]
-//         const curr = nums[i] + skip
-//         const prev = table[i - 1]
-//         table[i] = Math.max(curr, prev)
-//     }
-
-//     return table[table.length - 1]
-// }
-
-function maxNonAdjacentSum(nums, memo = {}) {
-    if (nums.length in memo) return memo[nums.length]
+function maxNonAdjacentSum(nums) {
     if (nums.length === 0) return 0
 
-    const first = nums[0]
-    return memo[nums.length] = Math.max(
-        maxNonAdjacentSum(nums.slice(2), memo) + first, 
-        maxNonAdjacentSum(nums.slice(1), memo)
-    )
+    const table = new Array(nums.length).fill(0)
+    table[0] = nums[0]
+
+    for (let i = 1; i < table.length; i++) {
+        const skip = table[i - 2] === undefined ? 0 : table[i -2]
+        const curr = nums[i] + skip
+        const prev = table[i - 1]
+        table[i] = Math.max(curr, prev)
+    }
+
+    return table[table.length - 1]
 }
+
+// function maxNonAdjacentSum(nums, memo = {}) {
+//     if (nums.length in memo) return memo[nums.length]
+//     if (nums.length === 0) return 0
+
+//     const first = nums[0]
+//     return memo[nums.length] = Math.max(
+//         maxNonAdjacentSum(nums.slice(2), memo) + first, 
+//         maxNonAdjacentSum(nums.slice(1), memo)
+//     )
+// }
 
 
 // Write a function, minChange(coins, amount), that accepts an array of coin values
@@ -105,8 +103,36 @@ function maxNonAdjacentSum(nums, memo = {}) {
 // minChange([1, 5, 10, 25], 15)    // => 2, because 10 + 5 = 15
 // minChange([1, 5, 10, 25], 100)   // => 4, because 25 + 25 + 25 + 25 = 100
 
-function minChange(coins, amount) {
+// function minChange(coins, amount, memo = {}) {
+//     if (amount in memo) return memo[amount]
+//     if (amount === 0) return 0
 
+//     const change = []
+//     for (coin of coins) {
+//         if (coin <= amount) {
+//             change.push(minChange(coins, amount - coin, memo) + 1);
+//         }
+//     }
+//     console.log(change)
+
+//     return memo[amount] = Math.min(...change)
+// }
+
+function minChange(coins, amount) {
+    const table = new Array(amount + 1).fill(Infinity)
+    table[0] = 0
+
+    for (let amt = 0; amt < table.length; amt++) { //Each index represents a sub-amount
+        for (coin of coins) { //Take each coin for each sub-amount
+            for (let qty = 0; qty * coin <= amt; qty++) { //Try multiple quantities of each coin
+                const remainder = amt - qty * coin //Find the remainder after subtracting coin * quantity
+                const attempt = table[remainder] + qty //Take current number of coins at remainder's sub-amount and add quantity
+                table[amt] = Math.min(table[amt], attempt) //Assign lower number of coins to sub-amount's index
+            }
+        }
+    }
+
+    return table[table.length - 1]
 }
 
 
