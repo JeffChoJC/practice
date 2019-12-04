@@ -63,8 +63,32 @@ function stepper(nums) { //tabulation
 //
 // maxNonAdjacentSum([2, 7, 9, 3, 4])   // => 15, because 2 + 9 + 4
 // maxNonAdjacentSum([4,2,1,6])         // => 10, because 4 + 6 
-function maxNonAdjacentSum(nums) {
 
+// function maxNonAdjacentSum(nums) {
+//     if (nums.length === 0) return 0
+
+//     const table = new Array(nums.length).fill(0)
+//     table[0] = nums[0]
+
+//     for (let i = 1; i < table.length; i++) {
+//         const skip = table[i - 2] === undefined ? 0 : table[i -2]
+//         const curr = nums[i] + skip
+//         const prev = table[i - 1]
+//         table[i] = Math.max(curr, prev)
+//     }
+
+//     return table[table.length - 1]
+// }
+
+function maxNonAdjacentSum(nums, memo = {}) {
+    if (nums.length in memo) return memo[nums.length]
+    if (nums.length === 0) return 0
+
+    const first = nums[0]
+    return memo[nums.length] = Math.max(
+        maxNonAdjacentSum(nums.slice(2), memo) + first, 
+        maxNonAdjacentSum(nums.slice(1), memo)
+    )
 }
 
 
@@ -80,6 +104,7 @@ function maxNonAdjacentSum(nums) {
 // minChange([1, 4, 5], 8))         // => 2, because 4 + 4 = 8
 // minChange([1, 5, 10, 25], 15)    // => 2, because 10 + 5 = 15
 // minChange([1, 5, 10, 25], 100)   // => 4, because 25 + 25 + 25 + 25 = 100
+
 function minChange(coins, amount) {
 
 }
