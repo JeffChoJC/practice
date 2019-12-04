@@ -2,7 +2,7 @@
 // Feel free to use this file for scratch work.
 
 function minPathSum(grid) {
-  const table = new Array(grid.length).fill(new Array(grid[0].length).fill(0));
+  const table = new Array(grid.length).fill().map(() => new Array(grid[0].length).fill(Infinity));
   table[0][0] = grid[0][0];
 
   for (let y = 0; y < table.length; y++) {
