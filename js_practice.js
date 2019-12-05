@@ -57,34 +57,8 @@ function merge(l, r) {
     return res
 };
 
-var rotate = function(matrix) {
-    const n = matrix.length - 1;
-    
-    for (let i = 0; i <= n; i++) {
-        for (let j = 0; j <= n; j++) {
-            let newX = (i + n) % n;
-            let newY = (j + n) % n;
-            [matrix[i][j],matrix[newY][newX]] = [matrix[newY][newX],matrix[i][j]]
-        }
-    }
-
-    return matrix;
-};
-
 var nums1 = [12, 31, 51, 2, 86, 142, 754, 22, 61, 23, 9, 0, 11];
 var nums2 = [22, 61, 11, 8, 96, 242, 624, 71, 23, 512, 6, 0, 90];
 // console.log(quicksort(nums1));
 // console.log(bubblesort(nums2));
 // console.log(mergeSort(nums2));
-console.log(rotate([[1,2,3],[4,5,6],[7,8,9]]))
-
-
-1 + 2 % 2
-// 0,1 > 1,2
-// 0,0 > 0,2
-// 2,0 > 0,0
-// 0,2 > 2,2
-
-[[7, 4, 1]
- [8, 5, 2]
- [9, 6, 3]]
