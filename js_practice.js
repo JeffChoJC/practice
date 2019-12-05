@@ -29,6 +29,36 @@ function bubblesort(nums) {
     return nums;
 }
 
+function mergeSort(nums) {
+    if (nums.length < 2) return nums
+
+    const mid = Math.floor(nums.length / 2)
+
+    let left = mergeSort(nums.slice(0, mid))
+    let right = mergeSort(nums.slice(mid))
+
+    return merge(left, right);
+}
+
+function merge(l, r) {
+    const res = [];
+
+    while (l.length || r.length) {
+        const left = l.length ? l[0] : Infinity
+        const right = r.length ? r[0] : Infinity
+
+        if (left < right) {
+            res.push(l.shift());
+        } else {
+            res.push(r.shift());
+        }
+    }
+
+    return res
+};
+
 var nums1 = [12, 31, 51, 2, 86, 142, 754, 22, 61, 23, 9, 0, 11];
-console.log(quicksort(nums1));
-console.log(bubblesort(nums1));
+var nums2 = [22, 61, 11, 8, 96, 242, 624, 71, 23, 512, 6, 0, 90];
+// console.log(quicksort(nums1));
+// console.log(bubblesort(nums2));
+console.log(mergeSort(nums2));
