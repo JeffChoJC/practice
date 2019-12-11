@@ -82,7 +82,7 @@ class LRUCache {
 
   // TODO: Implement the get method here
   get(key) {
-    if (!key in this.items) return null
+    if (!(key in this.items)) return null
 
     const item = this.items[key]
     this.promote(item)
@@ -93,15 +93,16 @@ class LRUCache {
   // TODO: Implement the set method here
   set(key, val) {
     if (key in this.items) {
-      this.items[key] = val
-      this.promote(this.items[key])
+      const item = this.items[key]
+      item.val = val
+      this.promote(item)
     } else {
-      if (this.isFull()) this.prune();
+      if (this.isFull()) this.prune()
 
-      item = new LRUCacheItem(val, key)
+      const item = new LRUCacheItem(val, key)
       item.node = this.ordering.unshift(item)
-      this.items[key] = item;
-      this.length += 1;
+      this.items[key] = item
+      this.length++
     }
   }
 
@@ -111,7 +112,7 @@ class LRUCache {
 
   prune() {
     const oldest = this.ordering.pop()
-    delete this.items[oldest]
+    delete this.items[oldest.key]
     this.length = Math.max(0, this.length - 1)
   }
 
