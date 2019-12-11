@@ -61,7 +61,17 @@
 // -----------
 function hasCycle(linkedList) {
   // TODO: Implement the hasCycle function!
+  let point1 = linkedList.head
+  let point2 = linkedList.head
+  let pause = true
 
+  while (point2 = point2.next) {
+    if (point1 === point2) return true
+    point1 = pause ? point1 : point1.next
+    pause = !pause
+  }
+
+  return false
 }
 
 

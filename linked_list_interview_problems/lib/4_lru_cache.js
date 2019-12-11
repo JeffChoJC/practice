@@ -58,24 +58,36 @@
 // TODO: Implement the LRUCacheItem class here
 class LRUCacheItem {
   constructor(val = null, key = null) {
-
+    this.val = val;
+    this.key = key;
+    this.node = null;
   }
 }
 
-// TODO: Implement the LRUCacheItem class here
+// TODO: Implement the LRUCache class here
 class LRUCache {
   constructor(limit) {
+    this.items = {}
 
+    this.ordering = new List()
+
+    this.limit = limit
+    this.length = 0
   }
 
   // TODO: Implement the size method here
   size() {
-
+    return this.length
   }
 
   // TODO: Implement the get method here
   get(key) {
+    if (!key in this.items) return null
 
+    const item = this.items[key]
+    this.promote(item)
+
+    return item.val
   }
 
   // TODO: Implement the set method here
