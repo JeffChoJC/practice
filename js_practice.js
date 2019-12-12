@@ -57,17 +57,34 @@ function merge(l, r) {
     return res
 };
 
-function add(str1) {
-    return str2 => {
-        return (str3 = "baz") => {
-            return [str1, str2, str3].join(" ")
-        }
-    }
+function add(str1, str2, str3 = "baz") {
+    return [str1, str2, str3].join(" ")
 }
+
+function curry(func) {
+  return function curried(...args) {
+    if (args.length >= func.length) {
+        return func.apply(this, args);
+    } else {
+        return function(...args2) {
+            return curried.apply(this, args.concat(args2));
+      };
+    }
+  };
+}
+
+function sum(a, b, c) {
+  return a + b + c;
+}
+
+let curriedSum = curry(sum);
+let curriedAdd = curry(add)
 
 var nums1 = [12, 31, 51, 2, 86, 142, 754, 22, 61, 23, 9, 0, 11];
 var nums2 = [22, 61, 11, 8, 96, 242, 624, 71, 23, 512, 6, 0, 90];
 // console.log(quicksort(nums1));
 // console.log(bubblesort(nums2));
 // console.log(mergeSort(nums2));
-console.log(add("foo")("bar")())
+console.log(curriedAdd("foo")("bar"))
+console.log(curriedSum(1)(2)(3))
+
