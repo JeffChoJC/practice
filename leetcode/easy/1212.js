@@ -36,10 +36,10 @@ function getHint(secret, guess) { // better
     for (i = 0; i < secret.length; i++) {
         if (secret[i] === guess[i]) A++;
         else {
-            map[secret[i]]++;
-            B += map[secret[i]] <= 0 ? 1 : 0;
-            map[guess[i]]--;
-            B += map[guess[i]] >= 0 ? 1 : 0;
+            map[secret[i]]++; // add secret digit count
+            B += map[secret[i]] <= 0 ? 1 : 0; // if you've seen the digit as a guess before, it will be negative
+            map[guess[i]]--; // subtract guess digit count
+            B += map[guess[i]] >= 0 ? 1 : 0; // if you've seen the digit as a secret before, it will be positive
         }
     }
     return A + 'A' + B + 'B';
