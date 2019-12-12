@@ -87,4 +87,3 @@ var nums2 = [22, 61, 11, 8, 96, 242, 624, 71, 23, 512, 6, 0, 90];
 // console.log(mergeSort(nums2));
 console.log(curriedAdd("foo")("bar"))
 console.log(curriedSum(1)(2)(3))
-
